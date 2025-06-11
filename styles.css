@@ -19,11 +19,6 @@ body {
     object-fit: cover;
     cursor: pointer;
     border: 2px solid transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
 }
 
 .tile.selected {
