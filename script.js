@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Image options (replace these with actual image paths in production)
-    const imageOptions = [
-        'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
-        'https://images.pexels.com/photos/2664417/pexels-photo-2664417.jpeg',
-        'https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg',
-        'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg',
-        'https://images.pexels.com/photos/2523934/pexels-photo-2523934.jpeg'
-    ];
+    // Image options - using classes img1 through img5 as per test requirements
+    const imageOptions = ['img1', 'img2', 'img3', 'img4', 'img5'];
     
     // DOM elements
     const imageContainer = document.getElementById('imageContainer');
@@ -44,13 +38,20 @@ document.addEventListener('DOMContentLoaded', function() {
         shuffleArray(tiles);
         
         // Create tile elements
-        tiles.forEach((imgSrc, index) => {
-            const tile = document.createElement('img');
-            tile.className = 'tile';
+        tiles.forEach((imgClass, index) => {
+            const tile = document.createElement('div');
+            tile.className = `tile ${imgClass}`;
             tile.dataset.index = index;
-            tile.dataset.img = imgSrc;
-            tile.src = imgSrc;
-            tile.alt = `Verification image ${index + 1}`;
+            tile.dataset.img = imgClass;
+            
+            // For demo purposes, we'll show the image class as text
+            tile.textContent = imgClass;
+            tile.style.backgroundColor = getRandomColor();
+            tile.style.display = 'flex';
+            tile.style.alignItems = 'center';
+            tile.style.justifyContent = 'center';
+            tile.style.color = 'white';
+            tile.style.fontWeight = 'bold';
             
             tile.addEventListener('click', handleTileClick);
             imageContainer.appendChild(tile);
@@ -121,5 +122,15 @@ document.addEventListener('DOMContentLoaded', function() {
             [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
+    }
+    
+    // Helper function to generate random color for demo purposes
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 });
